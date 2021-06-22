@@ -12,7 +12,7 @@ namespace wizards.eventSystem
 
         public enum EventTypes
         {
-            buttonClick
+            // place your event names here
         }
 
         static EventsWithoutData()
@@ -59,7 +59,7 @@ namespace wizards.eventSystem
 
         public enum DTOEventTypes
         {
-            showInput
+            // place your event names here
         };
 
         private static Dictionary<DTOEventTypes, EventHandler> EventHandlers;
