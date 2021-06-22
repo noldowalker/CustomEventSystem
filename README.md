@@ -1,0 +1,1 @@
+This is simple event system. Ready to use from start.
