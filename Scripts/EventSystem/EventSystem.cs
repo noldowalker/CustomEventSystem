@@ -8,21 +8,11 @@ namespace wizards.eventSystem
     public static class EventsWithoutData
     {
         public delegate void EventHandler();
-        private static Dictionary<EventTypes, EventHandler> EventHandlers;
-
-        public enum EventTypes
-        {
-            // place your event names here
-        }
+        private static Dictionary<Enum, EventHandler> EventHandlers;
 
         static EventsWithoutData()
         {
-            EventHandlers = new Dictionary<EventTypes, EventHandler>();
-
-            foreach (EventTypes type in (EventTypes[]) Enum.GetValues(typeof(EventTypes)))
-            {
-                EventHandlers.Add(type, null);
-            }
+            EventHandlers = new Dictionary<Enum, EventHandler>();
         }
 
         public static void Clear()
@@ -30,13 +20,15 @@ namespace wizards.eventSystem
             EventHandlers.Clear();
         }
 
-        public static void FireEvent(EventTypes eventType)
+        public static void FireEvent(Enum eventType)
         {
-
+            if (!EventHandlers.ContainsKey(eventType)) 
+                return;
+            
             EventHandlers[eventType]?.Invoke();
         }
 
-        public static void Sub(EventTypes eventType, EventHandler @delegate)
+        public static void Sub(Enum eventType, EventHandler @delegate)
         {
             if (@delegate != null)
             {
@@ -44,8 +36,11 @@ namespace wizards.eventSystem
             }
         }
 
-        public static void Unsub(EventTypes eventType, EventHandler @delegate)
+        public static void Unsub(Enum eventType, EventHandler @delegate)
         {
+            if (!EventHandlers.ContainsKey(eventType)) 
+                return;
+            
             if (@delegate != null)
             {
                 EventHandlers[eventType] -= @delegate;
@@ -57,21 +52,11 @@ namespace wizards.eventSystem
     {
         public delegate void EventHandler(T dto);
 
-        public enum DTOEventTypes
-        {
-            // place your event names here
-        };
-
-        private static Dictionary<DTOEventTypes, EventHandler> EventHandlers;
+        private static Dictionary<Enum, EventHandler> EventHandlers;
 
         static EventsWithData()
         {
-            EventHandlers = new Dictionary<DTOEventTypes, EventHandler>();
-
-            foreach (DTOEventTypes type in (DTOEventTypes[])Enum.GetValues(typeof(DTOEventTypes)))
-            {
-                EventHandlers.Add(type, null);
-            }
+            EventHandlers = new Dictionary<Enum, EventHandler>();
         }
 
         public static void Clear()
@@ -79,13 +64,15 @@ namespace wizards.eventSystem
             EventHandlers.Clear();
         }
 
-        public static void FireEvent(DTOEventTypes eventType, T message)
+        public static void FireEvent(Enum eventType, T message)
         {
-
+            if (!EventHandlers.ContainsKey(eventType)) 
+                return;
+            
             EventHandlers[eventType]?.Invoke(message);
         }
 
-        public static void Sub(DTOEventTypes eventType, EventHandler handler)
+        public static void Sub(Enum eventType, EventHandler handler)
         {
             if (handler != null)
             {
@@ -93,8 +80,11 @@ namespace wizards.eventSystem
             }
         }
 
-        public static void Unsub(DTOEventTypes eventType, EventHandler handler)
+        public static void Unsub(Enum eventType, EventHandler handler)
         {
+            if (!EventHandlers.ContainsKey(eventType)) 
+                return;
+            
             if (handler != null)
             {
                 EventHandlers[eventType] -= handler;
