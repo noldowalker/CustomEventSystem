@@ -17,7 +17,7 @@ public enum EventTypes
 ```EventsWithoutData.Sub(EventTypes.myEventWithoutData, eventName);```
 4. When you need to call eventName method, just call ```EventsWithoutData.FireEvent(EventTypes.myEventWithoutData);```
 
-If you need send data with event - in case you only need to know that event was fired you will do the same. But using EventsWithData
+If you need send data with event - in case you need send some data with event. But using EventsWithData
 class and declare a struct with EventDataTransferObject as ancestor.
 1. Add necessary event type into any enum.
 ```
