@@ -1,6 +1,6 @@
 {
   "name": "com.wizards.eventsystem",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "displayName": "Custom Event System",
   "description": "This is package with easy delegate based event system. Ready to use from the box!",
   "unity": "2021.1",

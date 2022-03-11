@@ -30,10 +30,13 @@ namespace wizards.eventSystem
 
         public static void Sub(Enum eventType, EventHandler @delegate)
         {
-            if (@delegate != null)
-            {
-                EventHandlers[eventType] += @delegate;
-            }
+            if (@delegate == null)
+                return;
+                    
+            if (!EventHandlers.ContainsKey(eventType))
+                EventHandlers[eventType] = null;
+
+            EventHandlers[eventType] += @delegate;
         }
 
         public static void Unsub(Enum eventType, EventHandler @delegate)
@@ -74,10 +77,14 @@ namespace wizards.eventSystem
 
         public static void Sub(Enum eventType, EventHandler handler)
         {
-            if (handler != null)
-            {
-                EventHandlers[eventType] += handler;
-            }
+            if (handler == null)
+                return;
+                    
+            if (!EventHandlers.ContainsKey(eventType))
+                EventHandlers[eventType] = null;
+                
+            EventHandlers[eventType] += handler;
+            
         }
 
         public static void Unsub(Enum eventType, EventHandler handler)
